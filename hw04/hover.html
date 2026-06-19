@@ -73,9 +73,6 @@
             var x = d3.scaleLinear()
                 .domain([xMin, 1]) // ssim
                 .range([ 0, width ]);
-            svg.append("g")
-                .attr("transform", "translate(0," + height + ")")
-                .call(d3.axisBottom(x));
 
             svg.append("g")
                 .attr("transform", "translate(0," + height + ")")
@@ -92,8 +89,6 @@
             var y = d3.scaleLinear()
                 .domain([0, yMax]) // lpips
                 .range([ height, 0]);
-            svg.append("g")
-                .call(d3.axisLeft(y));
 
             // 加入Y軸以及標籤
             svg.append("g")
@@ -116,24 +111,28 @@
                 .attr("transform", function(d) { return "translate(" + x(d.SSIM) + "," + y(d.LPIPS) + ")"; })
                 .style("cursor", "pointer");
 
-            // 畫圓 (將半徑 r 縮小到 14)
-            node.append("circle")
-                .attr("r", 14) 
-                .style("fill", function(d) {
-                    return d.Student === myImg ? "#ff0000" : "#187C19"; 
+            // 畫正方形外框
+            var rectSize = 36;
+            node.append("rect")
+                .attr("width", rectSize)
+                .attr("height", rectSize)
+                .attr("x", -rectSize / 2)
+                .attr("y", -rectSize / 2)
+                .style("fill", "rgba(0,0,0,0)")
+                .style("stroke", function(d) {
+                    return d.Student === myImg ? "#ff0000" : "#187C19";
                 })
-                .style("stroke", "white")
-                .style("stroke-width", "1.5px");
+                .style("stroke-width", "2px");
 
             // 加入圖片
             node.append("image")
                 .attr("xlink:href", function(d) { 
                     return "img/" + d.Student; // 讀取圖片路徑
                 }) 
-                .attr("x", -10) // 往左平移一半寬度以置中
-                .attr("y", -10) // 往上平移一半高度以置中
-                .attr("width", 20) // 圖片寬度
-                .attr("height", 20) // 圖片高度
+                .attr("x", -17)
+                .attr("y", -17)
+                .attr("width", 34)
+                .attr("height", 34)
                 .style("pointer-events", "none"); // 確保滑鼠事件由群組接管
 
             // Tooltip 綁定到整個 node 群組上

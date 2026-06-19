@@ -153,7 +153,7 @@
   <!-- ------------------------------------------------>
   <div class="row hw12">
     <div class="col-md-12 twenty">
-      心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。
+      這次作業讓我實際理解單張動漫角色圖轉成動畫時，角色一致性比單張構圖更困難。我使用 Counterfeit V2.5 Checkpoint、角色風格 LoRA 與 AnimateDiff，分別設計異色瞳吸血鬼、雙馬尾日本女高中生及地雷系少女三個原創角色。提示詞刻意只安排眨眼、抬手、轉頭、衣髮飄動等小動作，背景則加入燭火、花瓣、雨滴與霓虹反光的微小變化，避免大幅動作造成臉部、服裝或肢體跳動。生成後我檢查首幀、中段與末幀，並用負面提示排除真人風格、多人物、重複肢體和服裝變化，最後輸出三張人物圖與三份 MP4 動畫。
     </div>
   </div>
 
@@ -169,22 +169,22 @@
         </tr>
         <tr>
           <td rowspan="4" id="myTotal"></td>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox1"></td>
+          <td><input type="checkbox" class="flipswitch" id="myCheckbox1" checked></td>
           <td id='m1'>4</td>
-          <td>Simple baseline - 描述</td>
+          <td>Simple baseline - 完成 ComfyUI 環境，使用自選 Checkpoint 與 LoRA</td>
         </tr>
         <tr>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox2"></td>
+          <td><input type="checkbox" class="flipswitch" id="myCheckbox2" checked></td>
           <td id='m2'>4</td>
-          <td>Medium baseline - 描述</td>
+          <td>Medium baseline - 完成三張原創動漫人物圖片</td>
         </tr>
         <tr>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox3"></td>
+          <td><input type="checkbox" class="flipswitch" id="myCheckbox3" checked></td>
           <td id='m3'>2</td>
-          <td>Strong baseline - 描述</td>
+          <td>Strong baseline - 完成三份人物簡單動作與背景動畫</td>
         </tr>
         <tr>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox4" checked></td>
+          <td><input type="checkbox" class="flipswitch" id="myCheckbox4"></td>
           <td id='m4'>-10</td>
           <td>沒有寫100字心得</td>
         </tr>
@@ -194,11 +194,48 @@
   </div>
 
   <!-- ------------------------------------------------>
+  <div class="row hw12">
+    <div class="col-md-12 twenty" style="background-color: rgb(0, 176, 80);">
+      Comfy UI 環境設定完成<br>
+      CheckPoint：<a href="https://huggingface.co/gsdf/Counterfeit-V2.5">Counterfeit V2.5</a><br>
+      LoRA：<a href="https://civitai.com/models/180978?modelVersionId=203107">Sousou no Frieren style V1</a><br>
+      Workflow：<a href="hw06_workflow.json">hw06_workflow.json</a>
+      <img src="environment.png" alt="完整且節點文字可讀的 ComfyUI AnimateDiff 工作流" style="width:100%;max-width:100%;">
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------>
+  <div class="row hw12" style="background-color: red;">
+    <div class="col-md-4 twenty">
+      生成角色的圖片 - 1<br>
+      <img src="vampire.png" alt="原創異色瞳吸血鬼動漫角色" style="width:100%;max-width:100%;">
+    </div>
+    <div class="col-md-4 twenty">
+      生成角色的圖片 - 2<br>
+      <img src="schoolgirl.png" alt="原創雙馬尾日本女高中生動漫角色" style="width:100%;max-width:100%;">
+    </div>
+    <div class="col-md-4 twenty">
+      生成角色的圖片 - 3<br>
+      <img src="jirai.png" alt="原創地雷系少女動漫角色" style="width:100%;max-width:100%;">
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------>
   <div class="row hw12 bottomrow">
-    <div class="col-md-12 twenty">
-      <video id="video1" style="width:100%;max-width:100%;" controls="">
-        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-      </video>
+    <div class="col-md-4 twenty">
+      生成完整角色動畫 - 1<br>
+      <img src="vampire-animation.gif" alt="異色瞳吸血鬼角色動畫" style="width:100%;max-width:100%;">
+      使用提示詞："0": "original vampire girl, (heterochromia:1.5), bright crimson left eye, bright sapphire blue right eye, small vampire fangs, long silver hair, black bat hairpin, (black and burgundy gothic lolita cape dress:1.4), standing calmly in an ancient moonlit library, candles glowing in background, arms relaxed", "12": "same original heterochromia vampire girl, same red left eye and blue right eye, same black and burgundy gothic lolita dress in the moonlit library, blinking once and slowly turning her head, silver hair swaying slightly, candle flames moving gently", "24": "same original heterochromia vampire girl and same black burgundy clothes, lifting one hand near her cheek, showing small fangs with a subtle confident smile, cape hem moving slightly, moonlight dust drifting behind her", "36": "same original heterochromia vampire girl and same black burgundy clothes, lowering her hand and looking toward the tall window, hair and ribbon moving in a soft breeze, candles flickering softly", "47": "same original heterochromia vampire girl and same black burgundy clothes, returning to the starting pose, red left eye and blue right eye visible, cape settling, quiet moonlit library"
+    </div>
+    <div class="col-md-4 twenty">
+      生成完整角色動畫 - 2<br>
+      <img src="schoolgirl-animation.gif" alt="雙馬尾日本女高中生角色動畫" style="width:100%;max-width:100%;">
+      使用提示詞："0": "original Japanese high school girl with dark brown twin tails and amber eyes, navy sailor uniform, white blouse, red ribbon, pleated skirt and black knee socks, standing alone at a quiet cherry blossom train platform, school bag in one hand", "12": "same original twin-tail schoolgirl and same uniform at the platform, blinking and shifting her weight slightly, twin tails and ribbon moving in the breeze, cherry petals drifting", "24": "same original twin-tail schoolgirl and same uniform, raising one hand to adjust her red ribbon, small cheerful smile, train station lights softly changing behind her", "36": "same original twin-tail schoolgirl and same uniform, giving a small wave with one hand, skirt and twin tails swaying slightly, cherry petals crossing the background", "47": "same original twin-tail schoolgirl and same uniform, lowering her hand and looking down the tracks, hair settling, petals continuing to fall"
+    </div>
+    <div class="col-md-4 twenty">
+      生成完整角色動畫 - 3<br>
+      <img src="jirai-animation.gif" alt="地雷系少女角色動畫" style="width:100%;max-width:100%;">
+      使用提示詞："0": "original jirai-kei girl with black hair in curled twin buns and pink streaks, violet eyes, black and dusty-pink lace dress, heart choker, platform shoes, holding a transparent umbrella in a rainy neon shopping street, alone", "12": "same original jirai-kei girl and same lace dress, blinking and tilting the transparent umbrella slightly, curled hair tips moving, rain falling and neon signs glowing behind her", "24": "same original jirai-kei girl and same clothes, lifting her free hand into a small peace sign near her face, subtle cute smile, raindrops sliding across the umbrella", "36": "same original jirai-kei girl and same clothes, turning her shoulders a little toward the neon storefront, lace ribbons swaying, pink and blue reflections rippling on wet pavement", "47": "same original jirai-kei girl and same clothes, lowering her hand while keeping the umbrella steady, gentle blink, rain and neon background continuing softly"
     </div>
   </div>
 
@@ -252,4 +289,3 @@
 
 </body>
 </html>
-

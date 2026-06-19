@@ -1,0 +1,31 @@
+{
+  "checkpoint": "Counterfeit-V2.5_pruned.safetensors",
+  "lora": "Sousou_no_Frieren_style-V1.safetensors",
+  "lora_strength": 0.18,
+  "motion_model": "motionModel_v01.ckpt",
+  "resolution": "512x768",
+  "frames": 48,
+  "fps": 8,
+  "steps": 20,
+  "cfg": 7.0,
+  "sampler": "euler_ancestral",
+  "scheduler": "karras",
+  "negative_prompt": "photorealistic, realistic, 3d, live action, (worst quality, low quality:1.4), lowres, blurry, text, watermark, logo, cropped, out of frame, bad anatomy, bad hands, extra fingers, extra limbs, duplicate character, multiple people, crowd, deformed face, costume change, hairstyle change, flicker, nsfw",
+  "characters": [
+    {
+      "name": "異色瞳吸血鬼",
+      "seed": 26061901,
+      "animation": "眨眼、轉頭、抬手、髮絲與燭火微動"
+    },
+    {
+      "name": "雙馬尾日本女高中生",
+      "seed": 26061902,
+      "animation": "整理領結、小幅揮手、雙馬尾與花瓣微動"
+    },
+    {
+      "name": "地雷系少女",
+      "seed": 26061903,
+      "animation": "傾斜雨傘、比勝利手勢、雨滴與霓虹反光微動"
+    }
+  ]
+}

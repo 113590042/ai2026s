@@ -8,9 +8,7 @@
         #tooltip {
             position: absolute;
             text-align: center;
-            width: 12vw;       
-            min-width: 120px;  
-            max-width: 250px;   
+            width: 120px;
             height: auto;      
             padding: 8px;
             font: 12px sans-serif;
@@ -36,14 +34,16 @@
     
     <script>
         // 設定 SVG 大小
-        var margin = {top: 10, right: 30, bottom: 30, left: 60},
+        var margin = {top: 20, right: 30, bottom: 50, left: 60},
             width = 1080 - margin.left - margin.right,
-            height = 720 - margin.top - margin.bottom;
+            height = 580 - margin.top - margin.bottom;
 
         // 加入 svg 到 body
+        d3.select("body").style("margin", "0");
+
         var svg = d3.select("body").append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("width", "100%")
+            .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
         
@@ -55,23 +55,9 @@
         var myImg = "113590042.png";
         
         d3.csv("results.csv").then(function(data) {
-            data.forEach(function(d) {
-                d.LPIPS = +d.LPIPS;
-                d.SSIM = +d.SSIM;
-            });
-
-            var filteredData = data.filter(function(d) {
-                return d.SSIM >= 0 && d.SSIM <= 1 && d.LPIPS >= 0 && d.LPIPS <= 1;
-            });
-
-            var ssimExtent = d3.extent(filteredData, function(d) { return d.SSIM; });
-            var lpipsExtent = d3.extent(filteredData, function(d) { return d.LPIPS; });
-            var xMin = Math.max(0, ssimExtent[0] - 0.05);
-            var yMax = Math.min(1, lpipsExtent[1] + 0.05);
-
             // 設定x軸比例尺
             var x = d3.scaleLinear()
-                .domain([xMin, 1]) // ssim
+                .domain([0.3, 1]) // ssim
                 .range([ 0, width ]);
 
             svg.append("g")
@@ -81,14 +67,18 @@
             .append("text")
                 .attr("class", "axis-label")
                 .attr("x", width) // 將標籤放置在軸的末端
-                .attr("y", -20) // 在X軸線下方一點的位置
+                .attr("y", -40)
                 .style("text-anchor", "end") // 文本對齊方式
                 .text("SSIM");
 
             // 設定y軸比例尺
             var y = d3.scaleLinear()
-                .domain([0, yMax]) // lpips
+                .domain([0, 0.7]) // lpips
                 .range([ height, 0]);
+
+            var filteredData = data.filter(function(d) {
+                return d.SSIM >= 0 && d.SSIM <= 1 && d.LPIPS >= 0 && d.LPIPS <= 1;
+            });
 
             // 加入Y軸以及標籤
             svg.append("g")
@@ -150,8 +140,8 @@
                     var tooltipHeight = tooltipNode.offsetHeight;
 
                     tooltip
-                        .style("left", (d3.event.pageX - tooltipWidth - 15) + "px") // 往左位移
-                        .style("top", (d3.event.pageY - tooltipHeight - 15) + "px"); // 往上位移
+                        .style("left", (d3.event.pageX - tooltipWidth - 8) + "px") // 往左位移
+                        .style("top", (d3.event.pageY - tooltipHeight - 8) + "px"); // 往上位移
                 })
                 .on("mouseout", function(d) {
                     tooltip.transition()
